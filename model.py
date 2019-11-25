@@ -13,7 +13,7 @@ from keras.models import load_model
 import cv2
 def loadweight():
     #cnn4=load_model()
-    cnn4 = cnn4.load_model('myModel.h5')
+    cnn4 = load_model('myModel.h5')
     return cnn4
 def datapreprocess(img):
     img = cv2.imread(img,cv2.IMREAD_GRAYSCALE)
@@ -25,8 +25,8 @@ def datapreprocess(img):
     return img
 def predict(img):
     img=datapreprocess(img)
-    cnn4=loadweight()
-    predictions = cnn4.predict_classes(img)
+    cnn3=loadweight()
+    predictions = cnn3.predict_classes(img)
     # Define the text labels
     fashion_mnist_labels = ["T-shirt/top",  # index 0
                         "Trouser",      # index 1
@@ -40,5 +40,4 @@ def predict(img):
                         "Ankle boot"]   # index 9
 
 
-    return fashion_mnist_labels[predictions]
-predict('/home/system/test/tshirt.jpg')
+    return fashion_mnist_labels[predictions[0]]
